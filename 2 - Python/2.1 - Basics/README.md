@@ -1,0 +1,13 @@
+### Python basics:
+- If you are new to python and object oriented programing (OOP)
+    - Read the [following tutorial](https://python-textbok.readthedocs.io/en/1.0/) and do these exercises:
+        - control statements (1 ex)
+        - collections (all ex)
+        - loops (1 ex)
+        - errors (1 ex)
+        - functions (1 ex)
+        - classes (all ex)
+    - It is recommended to download and use pycharm or jupyter notebook for these assignments as these are the common ways for working with python.
+    - Skip the chapters about GUI ans algorithms.
+- If you are familiar with OOP but not with python - read the [following tutorial](https://docs.python.org/3/tutorial/).
+- If you are familiar with python - make sure you are familiar with the commands used [here](https://github.com/gumption/Python_for_Data_Science/blob/master/3_Python_Basic_Concepts.ipynb).

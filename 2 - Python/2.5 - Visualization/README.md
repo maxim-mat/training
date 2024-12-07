@@ -1,0 +1,22 @@
+### Data visualization
+- Your goal in this exercise is to communicate and present findings in a visual and comprehensible way.
+- The data you will work on is the titanic passengers data, you can find it titanic.xls file.
+- The table columns are as follows:
+    - passengerID
+    - Survived - did the passenger survived
+    - Pclass - passenger class
+    - Name
+    - Sex
+    - Age
+    - Sibsp - number of siblings and/or spouse on board
+    - Parch - number of parents/children on board
+    - Fare - ticket fare
+    - Cabin - room number
+    - Embarked - the port the passenger embarked from
+- Plot graphs that depict:
+    - How is age distributed in every pclass and in every age?
+    -  Which family had lost the most members?
+    - Is there a connection between the age of a passenger and it's chance of survival? What about his pclass?
+    - What is the relation between survivors to deceased in every pclass?
+- IMPORTANT: Present more findings with meaningful insights, as you see fit.
+- For plotting graphs, read about matplotlib and plotly and work with these modules. 
