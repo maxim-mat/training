@@ -182,3 +182,20 @@ Z = np.zeros((40,40))
 Z = np.arange(100)
 v = np.random.uniform(0,100)
 index = (np.abs(Z-v)).argmin()
+
+#53
+org = np.array([1.2,3.4,5.6,7.8,9.1,11.2,14.5,16.7])
+integer_array = np.array([int(i) for i in org])
+
+#55
+np.ndenumerate()
+
+#58
+Y = mat - mat.mean(axis=1, keepdims=True)
+
+#59
+nums[nums[:, 1].argsort()]
+
+#67
+A = np.random.randint(0,10,(3,4,3,4))
+sum = A.sum(axis=(-2,-1))
