@@ -1,0 +1,31 @@
+{
+  "shapes": [
+    {
+      "shape_name": "house",
+      "points": [
+        {
+          "x": -125,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "shape_name": "house",
+      "points": [
+        {
+          "x": 125,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "shape_name": "house",
+      "points": [
+        {
+          "x": 10,
+          "y": 0
+        }
+      ]
+    }
+  ]
+}

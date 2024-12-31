@@ -1,0 +1,38 @@
+{
+  "shapes": [
+    {
+      "shape_name": "circle",
+      "points": [{"x": 392 , "y": 225 , "radius": 95} ],
+      "color" : [23 ,15, 247],
+      "filled" : true,
+      "rotate" : 360
+    },
+    {
+      "shape_name": "circle",
+      "points": [{"x": 552 , "y": 225 , "radius": 95} ],
+      "color" : [23 ,15, 247],
+      "filled" : true
+    },
+    {
+      "shape_name": "triangle",
+      "points": [
+        {
+          "x": 300,
+          "y": 250
+        },
+        {
+          "x": 470,
+          "y": 500
+        },
+        {
+          "x": 645,
+          "y": 250
+        }
+      ],
+      "color": [
+    23 ,15, 247
+      ],
+      "filled": true
+    }
+  ]
+}

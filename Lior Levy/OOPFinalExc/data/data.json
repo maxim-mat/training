@@ -1,0 +1,22 @@
+{
+  "shapes": [
+    {
+      "shape_name": "street",
+      "points": [
+        {
+          "x": 0,
+          "y": -150
+        }
+      ]
+    },
+    {
+     "shape_name": "street",
+      "points": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ]
+    }
+    ]
+}

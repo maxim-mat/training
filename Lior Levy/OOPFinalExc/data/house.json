@@ -1,0 +1,23 @@
+{
+  "shapes": [
+    {
+      "shape_name": "rectangle",
+      "points": [{"x": 450 , "y": 250} , {"x": 550 , "y": 375}],
+      "color": [137 , 220 ,245],
+      "filled" : true
+    } ,
+    {
+      "shape_name": "triangle",
+      "points": [{"x": 450 , "y": 250} , {"x": 500 , "y": 175} , {"x": 550 , "y": 250} ],
+      "color" : [247, 15, 23],
+      "filled" : true
+    } ,
+    {
+      "shape_name": "rectangle",
+      "points": [{"x": 475 , "y": 325} , {"x": 500 , "y": 375}],
+      "color": [255, 250, 250],
+      "filled" : true
+    }
+
+  ]
+}
