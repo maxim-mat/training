@@ -1,0 +1,174 @@
+1. Create a DAG that prints: "Hello World" (without using PythonOperator but Task Decorator)
+
+2.1 
+	a. Perform the following calculations sequentially and without using PythonOperator but Task Decorator:
+		1. Task 1: Calculate the area of a circle with radius 𝑟: Area of Circle=π⋅r^2
+		2. Task 2: Calculate the area of a square with side 𝑠: Area of Square=s^2
+		3. Task 3: Calculate the factorial of n: Factorial of n=n!
+	b. Each task must print its respective result at the end of the task execution.
+	c. The tasks must execute sequentially in the order: Task 1 → Task 2 → Task 3.
+	d. You are given a single number 𝑟=𝑠=𝑛=7.
+
+2.2 Create a dag that's performing following tasks C:\Users\user\Downloads\output.png
+	2.2.1 Task1: Start Process that's printing: "Task1: Starting the DAG process."
+	2.2.2 Task2: Multiply by 2 - Multiply a number (e.g., 5) by 2 and log the result.
+	2.2.3 Task3: Add 10 to a number (e.g., 11) and log the result.
+	2.2.4 Task4: Sum results from Task2 and Task3 and print it.
+	2.2.5 Task5: Divide result Task4 by 3 and log the result.
+	2.2.6 Task6: Log a final message indicating the completion of the process.
+
+3. Create one Dag with multiple Operators; 
+	3.1 Use BashOperator to generate a random number between 1 and 20, print the result. 
+	3.2 Use XCom to pass the generated number to a (Task - Decorator!) that calculates the square root of the number Task-decorator and print the result.
+	3.3 Stores the result in a database using SQLExecutorQueryOperator.
+	3.4 Executes a task in a Kubernetes pod using KubernetesPodOperator that prints:
+		'Hello from KubernetesPodOperator! The factorial task is complete.'.
+	    Use for the image param use image='openshift-image-registry.apps.oscp-dev.mamdas.iaf/blue-lake/amir_importer_image'
+
+4. Use Task Groups to organize tasks into three logical groups; Validate Data, Process Orders, Generate Reports.
+   Each task does not need to perform any calculations or data manipulations.
+   Print a message at the end of each task to simulate its functionality.
+
+	Group 1 - Validate Data:
+	Task 1.1: Print "Validating file format..."
+	Task 1.2: Print "Validating required fields..."
+
+	Group 2 - Process Orders:
+	Task 2.1: Print "Filtering valid orders..."
+	Task 2.2: Print "Calculating total order value..."
+
+	Group 3 - Generate Reports:
+	Task 3.1: Print "Generating summary report..."
+	Task 3.2: Print "Sending report via email..."
+
+  The DAG should execute in the following order: Validate Data → Process Orders → Generate Reports
+
+5. XComs, Variables, and Jinja:
+	Define Airflow Variables: Create an Airflow Variable called high_sales_threshold_(name) with a value of 5000.
+	Create the DAG with the Following Tasks:
+
+		Task 1: Calculate Total Sales
+		- Simulate calculating total sales using hardcoded data. data = {'item': ['A', 'B', 'C'], 'sales': [2000, 1500, 1800]}
+		- Push the total sales value to XCom and print it.
+
+		Task 2: Check Sales Threshold
+		- Retrieve the sales threshold from Airflow Variables.
+		- Compare the total sales (from XCom) with the threshold and log whether the sales are High or Normal.
+
+		Task 3: Insert Sales Summary into Database
+		- Use Jinja Templates to dynamically generate a SQL query.
+		- Insert the execution date(variable that's part of Airflow’s macros), total sales value and the status (High or 			Normal) into a database table. Use only Jinja template variable to insert those 3 values into the table.
+
+6. ETL: Source to Target with a Between Table
+	1. Extract data from the Source Table in the database from your choose or create one that contains sales_data.
+		Instead extract and transform in one task by sql query.
+	2. Store the extracted data temporarily in a Staging Table.
+	3. Transform the data (e.g., calculate totals, filter rows, etc.).
+	4. Load the transformed data into the Target Table.
+	5. Ensure tasks are executed in the order: Extract → Transform → Load
+	6. If Database is not available perform this with csv file on local host.
+
+
+7. ETL: Handlers 
+	1. Extract data from the source table of your choice that could fit the ex. If not, use {'id': [1, 2, 3],'item': ['A', 'B','C'], 'sales': [100, 200, 150]} - The max values from table
+	2. Calculate the maximum value of the sales column and store it in a Xcom using a custom handler not write it (Custum Libraries).
+	3. Load the results into a target table using dynamic SQL with Jinja Templates.
+
+8. Create a venv where you run a task from the dag maybe with an exemple to know it - Omer
+
+9. Debug and Fix a Broken DAG:
+
+from airflow import Dags
+from airflow.providers.sql.operators.sql import SQLExecuteQueryOperator
+from airflow.decorators import Tasks
+import datetime
+
+# Default arguments for the DAG
+default_args = {
+    'owners': 'airflow',
+    'start_date': datetime.datetime(2023, 1, 1),
+    'retries': 2
+}
+
+# Define the DAG
+with DAG('broken_dag_decorator',
+         default_args=default_args,
+         schedule_intervals=None,
+         catchup=False):
+
+    # Task 1: Extract data
+    extract_data = SQLExecuteQueryOperator(
+        task_id='extract_data',
+        conn_id='my_database_connection',
+        sql="""
+        SELECT * FROM source_table
+        """,
+    )
+
+    # Task 2: Transform data using a decorator
+    @Tasks
+    def transform_data():
+    print("Transforming data...")
+
+    # Task 3: Load data
+    load_data = SQLExecuteQueryOperator(
+        task_id='load_data',
+        conn_id='my_database_connection',
+        sql="""
+        INSERT INTO target_table SELECT * FROM staging_table;
+        """,
+    )
+
+    # Task dependencies
+    extract_data >> transform_data >> load_data
+
+
+10. Build an Airflow DAG That Incorporates Logging Levels
+	10.1 Create a DAG with five tasks, each performing a specific calculation or action (without using print()!):
+		a. Task 1: Generate a random number integer between 0 and 43 and log it using the DEBUG level.
+		b. Task 2: Calculate the square of the number and log the result using the INFO level.
+		c. Task 3: Check if the number exceeds a threshold of 8 and log a WARNING if it does.
+		d. Task 4: Simulate a critical issue for numbers below a threshold of 30 and log an ERROR if it occurs.
+		e. Task 5: Log a CRITICAL message if the number is zero (an unrecoverable case).
+	10.2 Incorporate proper logging in each task to log messages at the appropriate level.
+	10.3 Ensure tasks are executed in the following order: Generate Number → Calculate Square → Check Threshold → Simulate Error → Log Critical
+
+	10.4 Test the DAG in your Airflow environment and ensure all tasks execute successfully while logging the correct messages.
+	10.5 Use Airflow Task Decorators (@task) to define each task.
+
+
+11. 
+
+	11.1 Fetch Stock Market Data:
+	Create a CSV file named /tmp/portfolio.csv using the BashOperator. 
+	Simulate 30 days of stock data with columns: date, stock, and price.
+
+	11.2 Calculate Metrics:
+	Make use of Task group.
+	Write a task decorator to calculate the average daily return from the CSV file.
+	Write another task decorator to calculate the variance of daily returns from the CSV file.
+	Store the results in XCom using ti.xcom_push.
+
+	11.3 Validate Data:
+	Write a custom handler to validate the variance:
+	If variance <= 0, branch to the cleanup_task.
+	Otherwise, proceed to the generate_alerts task.
+
+	11.4 Branching Logic:
+	Use the BranchPythonOperator to determine the next step based on the validation task's output.
+
+	11.5 Generate Alerts:
+	Use the KubernetesPodOperator to:
+	Log a message such as "Risk Alert: High volatility detected. Please review portfolio risks."
+	Run the task on a specific pool named risk_analysis_pool.
+
+	11.6 Summarize Results:
+	Write a task decorator to summarize:
+	Average return, variance, and risk classification.
+	Log the results.
+	
+	11.7 Cleanup Task:
+	Create a dummy operator as a placeholder for the cleanup task.
+	Log that invalid data was detected and handled.
+
+
