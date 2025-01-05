@@ -2,6 +2,7 @@
 
 This is a collection of material and exercises essential for your work. 
 The subjects of this training are (in order):
+
  0. Devops - Git and docker basics
  1. SQL - learning to write queries, optimize them and working with vertica
  2. Python part 1 - basics and introduction to python and OOP
