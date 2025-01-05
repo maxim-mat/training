@@ -1,7 +1,7 @@
 
 # Airflow Training Repository
 
-Welcome to the Airflow part of your training! This part contains a collection of resources and exercises designed to help you learn and master Apache Airflow, a powerful orchestration tool that uses DAGs to author, schedule, and manage complex workflows, like as our importers and ETLs
+Welcome to the Airflow part of your training! This part contains a collection of resources and exercises designed to help you learn and master Apache Airflow, a powerful orchestration tool that uses DAGs to author, schedule, and manage complex workflows, like our importers and ETLs (Extract, Transform and Load)
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -52,7 +52,7 @@ https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html
 ## Setup
 
 Put your python file where your DAG is stored in following path: \\na-dev-nas-1\unix_inst\Software\Shkifut\DataEngineer\kubernetes_nas\AirflowDAGs
-Make sure to also save your solutions in a seperate folder, and delete your dags once a senior checked and approved them to clean the folder.
+Make sure to also save your solutions in a seperate folder, and delete your dags once a senior checked and approved them to have a clean development environment.
 After editing a DAG, wait for a couple of minutes until the code is compiled in Airflow before triggering the DAG.
 
 ## exercises
